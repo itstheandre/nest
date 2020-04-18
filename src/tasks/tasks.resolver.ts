@@ -41,10 +41,15 @@ export class TasksResolver {
     @Loader(UserLoader) userLoader: DataLoader<User['_id'], User>,
   ) {
     // console.log('task:', task);
-    const allUsers = await userLoader.load(task.owner);
+    try {
+      const allUsers = await userLoader.load(task.owner);
 
-    console.log('allUsers: inside query resolver', allUsers);
-    return allUsers;
+      console.log('allUsers: inside query resolver', allUsers);
+      return allUsers;
+    } catch (e) {
+      console.log('e:', e.message);
+    }
+
     // return this.userService.findOne(task.owner);
   }
   // @ResolveField()

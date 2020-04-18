@@ -10,11 +10,18 @@ export class UserLoader extends OrderedNestDataLoader<User['_id'], User> {
   }
 
   protected getOptions = () => ({
+    propertyKey: '_id',
     query: async (keys: Array<string>) => {
+      // console.log('keys:', keys);
       const allUsers = await this.userService.findManyById(keys);
-      // console.log('allUsers:', allUsers);
-      // console.log('allUsers:', allUsers);
+      console.log('allUsers:', allUsers);
+
       return allUsers;
     },
   });
 }
+
+// const allUsers = await this.userService.findManyById(keys);
+//       console.log('allUsers:', allUsers);
+//       // console.log('allUsers:', allUsers);
+//       return allUsers;

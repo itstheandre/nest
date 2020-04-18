@@ -35,11 +35,12 @@ export class TasksResolver {
     return this.taskService.getAllTasks();
   }
 
-  @ResolveField()
+  @ResolveField(returns => User)
   async owner(
     @Parent() task: Task,
     @Loader(UserLoader) userLoader: DataLoader<User['_id'], User>,
   ) {
+    // console.log('task:', task);
     const allUsers = await userLoader.load(task.owner);
 
     console.log('allUsers: inside query resolver', allUsers);
@@ -49,6 +50,7 @@ export class TasksResolver {
   // @ResolveField()
   // async owner(@Parent() task: Task, @Context() ctx: MyContext) {
   //   const allUsers = await ctx.userLoader.load(task.owner);
+  //   console.log('allUsers:', allUsers);
   //   // console.log('allUsers:', allUsers);
   // }
 }

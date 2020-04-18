@@ -15,10 +15,13 @@ export class UsersService {
 
   async findManyById(ids: string[]) {
     // console.log('ids:', ids);
-    const usersList = await this.userModel
-      .find()
-      .where('_id')
-      .in(ids);
+    // const createUser = await this.userModel.create({
+    //   name: 'alphabet',
+    //   age: 21,
+    //   occupation: 'idontknow',
+    // });
+    // console.log('createUser:', createUser);
+    const usersList = await this.userModel.find({ _id: { $in: ids } });
     // console.log('usersList:', usersList);
     return usersList;
   }

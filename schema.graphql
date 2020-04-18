@@ -1,0 +1,38 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  _id: ID!
+  name: String!
+  age: Int!
+  occupation: String!
+}
+
+type Banana {
+  id: ID!
+  type: String!
+  location: String!
+}
+
+type Task {
+  _id: ID!
+  title: String!
+  completed: Boolean
+  assigned: Boolean
+  owner: User
+}
+
+type Query {
+  hello: String!
+  users: [User!]!
+  user(id: String!): User!
+  getAllBananas: [Banana!]!
+  tasks: [Task!]!
+}
+
+type Mutation {
+  createUser(name: String!, age: Int!, occupation: String!): User!
+  deleteUser(id: String!): User!
+  createTask(title: String!, completed: Boolean = false, assigned: Boolean = false, owner: ID): Task!
+}

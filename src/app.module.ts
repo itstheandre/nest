@@ -8,6 +8,8 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { DataLoaderInterceptor } from 'nestjs-graphql-dataloader';
 import { MyContext } from './ContextTypeTest';
 import { userLoader } from './users/loader/user2.loader';
+import * as mongoose from 'mongoose';
+mongoose.set('debug', true);
 
 @Module({
   providers: [

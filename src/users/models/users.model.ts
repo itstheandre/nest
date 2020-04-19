@@ -1,4 +1,5 @@
 import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
+import * as mongoose from 'mongoose';
 
 @ObjectType()
 export class User {

@@ -38,13 +38,12 @@ export class TasksResolver {
   @ResolveField(returns => User)
   async owner(
     @Parent() task: Task,
-    @Loader(UserLoader) userLoader: DataLoader<User['_id'], User>,
+    @Loader(UserLoader) userLoader: DataLoader<string, User>,
   ) {
-    // console.log('task:', task);
     try {
-      const allUsers = await userLoader.load(task.owner);
-
-      console.log('allUsers: inside query resolver', allUsers);
+      const allUsers = await userLoader.load(task.owner.toString());
+      // console.log('allUsers: inside query resolver', allUsers);
+      // const allUsers2 = await this.userService.findOne(task.owner);
       return allUsers;
     } catch (e) {
       console.log('e:', e.message);

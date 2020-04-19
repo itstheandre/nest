@@ -4,19 +4,21 @@ import { UsersService } from '../users.service';
 import { OrderedNestDataLoader } from 'nestjs-graphql-dataloader';
 
 @Injectable()
-export class UserLoader extends OrderedNestDataLoader<User['_id'], User> {
+export class UserLoader extends OrderedNestDataLoader<string, User> {
   constructor(private readonly userService: UsersService) {
     super();
   }
 
   protected getOptions = () => ({
     propertyKey: '_id',
-    query: async (keys: Array<string>) => {
-      // console.log('keys:', keys);
+    query: async (keys: string[]) => {
       const allUsers = await this.userService.findManyById(keys);
-      console.log('allUsers:', allUsers);
 
-      return allUsers;
+      const arr = allUsers.map(el => {
+        return { ...el._doc, _id: el._doc._id.toString() };
+      });
+
+      return arr;
     },
   });
 }

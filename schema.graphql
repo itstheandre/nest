@@ -9,12 +9,6 @@ type User {
   occupation: String!
 }
 
-type Banana {
-  id: ID!
-  type: String!
-  location: String!
-}
-
 type Task {
   _id: ID!
   title: String!
@@ -27,8 +21,8 @@ type Query {
   hello: String!
   users: [User!]!
   user(id: String!): User!
-  getAllBananas: [Banana!]!
   tasks: [Task!]!
+  getAllTasks: [Task!]!
 }
 
 type Mutation {

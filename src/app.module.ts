@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { MongooseModule } from '@nestjs/mongoose';
+// import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
-import { BananasModule } from './bananas/bananas.module';
+// import { BananasModule } from './bananas/bananas.module';
 import { TasksModule } from './tasks/tasks.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { DataLoaderInterceptor } from 'nestjs-graphql-dataloader';
-import { MyContext } from './ContextTypeTest';
-import { userLoader } from './users/loader/user2.loader';
+// import { userLoader } from './users/loader/user2.loader';
+import { TypegooseModule } from 'nestjs-typegoose';
 import * as mongoose from 'mongoose';
 mongoose.set('debug', true);
 
@@ -23,13 +23,13 @@ mongoose.set('debug', true);
       debug: false,
       playground: true,
       autoSchemaFile: 'schema.graphql',
-      context: ({ req, res }: MyContext) => ({
-        userLoader: userLoader(),
-      }),
     }),
-    MongooseModule.forRoot('mongodb://localhost/nest'),
+    // MongooseModule.forRoot('mongodb://localhost/nest'),
+    TypegooseModule.forRoot('mongodb://localhost/nest', {
+      useNewUrlParser: true,
+    }),
     UsersModule,
-    BananasModule,
+    // BananasModule,
     TasksModule,
   ],
 })

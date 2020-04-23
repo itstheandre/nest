@@ -1,13 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { InjectModel as InjMod } from 'nestjs-typegoose';
 import { Model } from 'mongoose';
-import { User } from './interface/users.interface';
+// import { User } from './interface/users.interface';
 import { CreateUserDto } from './dto/CreateUser.dto';
+import { User } from './models/users.model';
+import { ReturnModelType } from '@typegoose/typegoose';
 
 @Injectable()
 export class UsersService {
   // constructor()
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+  constructor(
+    // @InjectModel('User') private readonly userModel: Model<User>,
+    @InjMod(User) private readonly userModel: ReturnModelType<typeof User>,
+  ) {}
 
   async findAll() {
     return await this.userModel.find({});
@@ -20,8 +26,8 @@ export class UsersService {
   }
 
   async findOne(id: string) {
-    const user = await this.userModel.findOne(id);
-    console.log('user:', user);
+    const user = await this.userModel.findById(id);
+    // console.log('user:', user);
     return user;
   }
 

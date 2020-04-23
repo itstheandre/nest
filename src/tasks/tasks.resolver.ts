@@ -15,27 +15,31 @@ import { User } from 'src/users/models/users.model';
 import * as DataLoader from 'dataloader';
 import { Loader } from 'nestjs-graphql-dataloader';
 import { UserLoader } from 'src/users/loader/users.loader';
-import { MyContext } from 'src/ContextTypeTest';
 
-@Resolver(of => Task)
+@Resolver((of) => Task)
 export class TasksResolver {
   constructor(
     private readonly taskService: TasksService,
     private readonly userService: UsersService,
   ) {}
 
-  @Mutation(returns => Task)
+  @Mutation((returns) => Task)
   async createTask(@Args() createTaskDto: CreateTaskDto) {
     console.log('createTaskDto:', createTaskDto);
     return this.taskService.createTask(createTaskDto);
   }
 
-  @Query(returns => [Task])
+  @Query((returns) => [Task])
   async tasks() {
     return this.taskService.getAllTasks();
   }
 
-  @ResolveField(returns => User)
+  @Query((returns) => [Task])
+  async getAllTasks() {
+    return this.taskService.getTasksBanana();
+  }
+
+  @ResolveField((returns) => User)
   async owner(
     @Parent() task: Task,
     @Loader(UserLoader) userLoader: DataLoader<string, User>,
@@ -43,7 +47,7 @@ export class TasksResolver {
     try {
       const allUsers = await userLoader.load(task.owner.toString());
       // console.log('allUsers: inside query resolver', allUsers);
-      // const allUsers2 = await this.userService.findOne(task.owner);
+      // const allUsers = await this.userService.findOne(task.owner);
       return allUsers;
     } catch (e) {
       console.log('e:', e.message);

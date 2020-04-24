@@ -6,11 +6,13 @@ import { UsersResolver } from './users.resolver';
 import { UserLoader } from './loader/users.loader';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { User } from './models/users.model';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
     // MongooseModule.forFeature([UserSchema]),
     TypegooseModule.forFeature([User]),
+    // AuthModule,
   ],
   providers: [UsersService, UsersResolver, UserLoader],
   exports: [UsersService, UserLoader],

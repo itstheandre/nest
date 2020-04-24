@@ -6,7 +6,8 @@ type User {
   _id: ID!
   name: String!
   age: Int!
-  occupation: String!
+  password: String!
+  occupation: String
 }
 
 type Task {
@@ -19,6 +20,7 @@ type Task {
 
 type Query {
   hello: String!
+  test: String!
   users: [User!]!
   user(id: String!): User!
   tasks: [Task!]!
@@ -26,7 +28,7 @@ type Query {
 }
 
 type Mutation {
-  createUser(name: String!, age: Int!, occupation: String!): User!
+  createUser(name: String!, password: String!, age: Int!, occupation: String!): User!
   deleteUser(id: String!): User!
   createTask(title: String!, completed: Boolean = false, assigned: Boolean = false, owner: ID): Task!
 }

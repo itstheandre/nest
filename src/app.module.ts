@@ -24,21 +24,22 @@ mongoose.set('debug', true);
     AppService,
   ],
   imports: [
-    // GraphQLModule.forRoot({
-    //   debug: false,
-    //   playground: true,
-    //   autoSchemaFile: 'schema.graphql',
-    // }),
-    // // MongooseModule.forRoot('mongodb://localhost/nest'),
-    // TypegooseModule.forRoot('mongodb://localhost/nest', {
-    //   useNewUrlParser: true,
-    // }),
-    // UsersModule,
-    // // BananasModule,
-    // TasksModule,
-    AuthModule,
-    UserModule,
+    GraphQLModule.forRoot({
+      debug: false,
+      playground: true,
+      autoSchemaFile: 'schema.graphql',
+      context: ({ req }) => ({ req }),
+    }),
+    // MongooseModule.forRoot('mongodb://localhost/nest'),
+    TypegooseModule.forRoot('mongodb://localhost/nest', {
+      useNewUrlParser: true,
+    }),
+    UsersModule,
+    // BananasModule,
+    TasksModule,
+    // AuthModule,
+    // UserModule,
   ],
-  controllers: [AppController],
+  // controllers: [AppController],
 })
 export class AppModule {}

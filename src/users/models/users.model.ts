@@ -15,7 +15,11 @@ export class User {
   @prop()
   age: number;
 
-  @Field((type) => String)
+  @Field()
+  @prop()
+  password: string;
+
+  @Field((type) => String, {nullable:true})
   @prop()
   occupation: string;
 

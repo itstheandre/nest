@@ -6,6 +6,7 @@ import { Model } from 'mongoose';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import { User } from './models/users.model';
 import { ReturnModelType } from '@typegoose/typegoose';
+import { hash } from 'bcryptjs';
 
 @Injectable()
 export class UsersService {
@@ -32,7 +33,14 @@ export class UsersService {
   }
 
   async createUser(createUserDto: CreateUserDto) {
-    return await this.userModel.create(createUserDto);
+    const { name, password: toHash, age, occupation } = createUserDto;
+
+    const password = await hash(toHash, 10);
+    console.log('password:', password);
+
+    const newUser = { name, password, age, occupation };
+
+    return await this.userModel.create(newUser);
   }
 
   async deleteUser(id: string) {

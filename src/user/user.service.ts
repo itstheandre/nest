@@ -26,7 +26,18 @@ export class UserService {
     ];
   }
 
+  async getAll() {
+    return this.users;
+  }
+
   async findOne(username: string): Promise<User | undefined> {
     return this.users.find((user) => user.username === username);
+  }
+
+  async addOne(username: string, password: string): Promise<User> {
+    console.log('password:', password);
+    const user = { username, password, userId: this.users.length };
+    this.users.push(user);
+    return user;
   }
 }

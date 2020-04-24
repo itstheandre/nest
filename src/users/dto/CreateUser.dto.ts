@@ -5,7 +5,10 @@ export class CreateUserDto {
   @Field()
   name: string;
 
-  @Field(type => Int)
+  @Field()
+  password: string;
+
+  @Field((type) => Int)
   age: number;
 
   @Field()

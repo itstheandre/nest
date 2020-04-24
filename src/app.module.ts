@@ -8,7 +8,10 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { DataLoaderInterceptor } from 'nestjs-graphql-dataloader';
 // import { userLoader } from './users/loader/user2.loader';
 import { TypegooseModule } from 'nestjs-typegoose';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 import * as mongoose from 'mongoose';
+import { AppController } from './app.controller';
 mongoose.set('debug', true);
 
 @Module({
@@ -19,18 +22,21 @@ mongoose.set('debug', true);
     },
   ],
   imports: [
-    GraphQLModule.forRoot({
-      debug: false,
-      playground: true,
-      autoSchemaFile: 'schema.graphql',
-    }),
-    // MongooseModule.forRoot('mongodb://localhost/nest'),
-    TypegooseModule.forRoot('mongodb://localhost/nest', {
-      useNewUrlParser: true,
-    }),
-    UsersModule,
-    // BananasModule,
-    TasksModule,
+    // GraphQLModule.forRoot({
+    //   debug: false,
+    //   playground: true,
+    //   autoSchemaFile: 'schema.graphql',
+    // }),
+    // // MongooseModule.forRoot('mongodb://localhost/nest'),
+    // TypegooseModule.forRoot('mongodb://localhost/nest', {
+    //   useNewUrlParser: true,
+    // }),
+    // UsersModule,
+    // // BananasModule,
+    // TasksModule,
+    AuthModule,
+    UserModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}

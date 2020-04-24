@@ -12,6 +12,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import * as mongoose from 'mongoose';
 import { AppController } from './app.controller';
+import { AppService } from './app.service';
 mongoose.set('debug', true);
 
 @Module({
@@ -20,6 +21,7 @@ mongoose.set('debug', true);
       provide: APP_INTERCEPTOR,
       useClass: DataLoaderInterceptor,
     },
+    AppService,
   ],
   imports: [
     // GraphQLModule.forRoot({

@@ -1852,14 +1852,6 @@ apollo-server-env@^2.4.3, apollo-server-env@^2.4.4:
     node-fetch "^2.1.2"
     util.promisify "^1.0.0"
 
-apollo-server-env@^2.4.4:
-  version "2.4.4"
-  resolved "https://registry.yarnpkg.com/apollo-server-env/-/apollo-server-env-2.4.4.tgz#12d2d0896dcb184478cba066c7a683ab18689ca1"
-  integrity sha512-c2oddDS3lwAl6QNCIKCLEzt/dF9M3/tjjYRVdxOVN20TidybI7rAbnT4QOzf4tORnGXtiznEAvr/Kc9ahhKADg==
-  dependencies:
-    node-fetch "^2.1.2"
-    util.promisify "^1.0.0"
-
 apollo-server-errors@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/apollo-server-errors/-/apollo-server-errors-2.4.1.tgz#16ad49de6c9134bfb2b7dede9842e73bb239dbe2"
@@ -7635,9 +7627,9 @@ sshpk@^1.7.0:
     tweetnacl "~0.14.0"
 
 ssri@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.1.tgz#2a3c41b28dd45b62b63676ecb74001265ae9edd8"
-  integrity sha512-3Wge10hNcT1Kur4PDFwEieXSCMCJs/7WvSACcrMYrNp+b8kDL1/0wJch5Ni2WrtwEa2IO8OsVfeKIciKCDx/QA==
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.2.tgz#157939134f20464e7301ddba3e90ffa8f7728ac5"
+  integrity sha512-cepbSq/neFK7xB6A50KHN0xHDotYzq58wWCa5LeWqnPrHG8GzfEjO/4O8kpmcGW+oaxkvhEJCWgbgNk4/ZV93Q==
   dependencies:
     figgy-pudding "^3.5.1"
 
